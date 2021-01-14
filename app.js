@@ -7,6 +7,8 @@ const logger = require('morgan');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 const app = express();
 
@@ -32,6 +34,18 @@ mongoose.connect(process.env.DB_URI,
 // Body-parser
 app.set(bodyParser.urlencoded({ extended: true }));
 app.set(bodyParser.json());
+
+// Session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Flash
+app.use(flash());
+const flashMiddleware = require('./middlewares/flash');
+app.use(flashMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());

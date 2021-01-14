@@ -7,27 +7,61 @@ exports.SignUpPage = (req, res) =>
 
 exports.SignUp = (req, res) =>
 {
-    const err = [];
-    if (!req.body.username || typeof req.body.username === undefined || req.body.username === null)
+    var err = [];
+    let username = req.body.username;
+    if (!username || username === undefined || username === null)
     {
         err.push({
-            text: "Nome inválido"
+            text: "Username invalido"
         });
-    };
+    }
 
-    new UserModel({
-        username: req.body.username,
-        alias: req.body.alias,
-        email: req.body.email,
-        password: req.body.password,
-        birthdate: req.body.birthdate
-    }).save().then(() =>
+    let email = req.body.email;
+    if (!email || typeof email === undefined || email === null)
     {
-        console.log("Usuario criado com sucesso");
-        res.redirect('/')
-    }).catch((err) =>
+        err.push({
+            text: "Email inválido"
+        });
+    }
+
+    let password = req.body.password;
+    if (!password || typeof password === undefined || password === null)
     {
-        console.log(`Falha na criação do usuario - Erro: ${err}`);
-        res.redirect('/signup')
-    });
+        err.push({
+            text: "Senha invalida"
+        });
+    }
+
+    let birthdate = req.body.birthdate;
+    if (!birthdate || typeof birthdate === undefined || birthdate === null)
+    {
+        err.push({
+            text: "Data de nascimento invalida"
+        });
+    }
+
+    if (err.length > 0)
+    {
+        res.render('signUp', { err: err });
+    }
+
+    else
+    {
+        new UserModel({
+            username: req.body.username,
+            alias: req.body.alias,
+            email: req.body.email,
+            password: req.body.password,
+            birthdate: req.body.birthdate
+        }).save().then(() =>
+        {
+            req.flash('success_msg', "Usuario criado com sucesso");
+            res.redirect('/')
+        }).catch((err) =>
+        {
+
+            req.flash('error_msg', 'Falha ao criar usuario')
+            res.redirect('/signup')
+        });
+    }
 }
