@@ -1,5 +1,4 @@
 const User = require('../models/Users');
-const mongoose = require('mongoose');
 
 exports.Index = (req, res) =>
 {
