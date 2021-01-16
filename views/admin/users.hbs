@@ -1,13 +1,16 @@
 {{#each users}}
 <div class="card">
     <div class="card-body">
-        <p>Username: {{username}}</p>
-        <p>Alias: {{alias}}</p>
-        <p>Email: {{email}}</p>
-        <p>Birthdate: {{birthdate}}</p>
-        <p>Role: {{role}}</p>
-        <p>Create at: {{createdat}}</p>
-        <button type="button" class="btn btn-danger">Deletar usuario</button <hr>
+        <form action="/admin/users/delete/{{_id}}" method="POST">
+            <p>ID: {{_id}}</p>
+            <p>Username: {{username}}</p>
+            <p>Alias: {{alias}}</p>
+            <p>Email: {{email}}</p>
+            <p>Birthdate: {{birthdate}}</p>
+            <p>Role: {{role}}</p>
+            <p>Create at: {{createdat}}</p>
+            <button type="submit" class="btn btn-danger">Deletar usuario</button>
+        </form>
     </div>
 </div>
 {{/each}}
