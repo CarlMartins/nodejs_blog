@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
+require('dotenv').config({ path: __dirname + '/.env' })
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -6,10 +6,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
-
 const app = express();
 
 // view engine setup
@@ -17,19 +15,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.set('view options', { layout: '/layouts/layout' })
 hbs.registerPartials(__dirname + '/views/partials');
-
-// MongoDb Connection
-mongoose.connect(process.env.DB_URI,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }).then(() =>
-  {
-    console.log("Connection successfull to MongoDb");
-  }).catch((err) =>
-  {
-    console.log(`Connection failed - Error: ${err}`);
-  })
 
 // Body-parser
 app.set(bodyParser.urlencoded({ extended: true }));
@@ -62,6 +47,9 @@ app.use('/', indexRouter);
 
 const signUpRouter = require('./routes/signup');
 app.use('/', signUpRouter);
+
+// Db Connection
+require('./helpers/DBConn')
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next)

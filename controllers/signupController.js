@@ -1,5 +1,4 @@
 const UserModel = require('../models/Users');
-const bcrypt = require('bcrypt');
 
 exports.SignUpPage = (req, res) =>
 {
@@ -10,7 +9,7 @@ exports.SignUp = (req, res) =>
 {
     var err = [];
     let username = req.body.username;
-    if (!username || username === undefined || username === null)
+    if (!username || typeof username === undefined || username === null)
     {
         err.push({
             text: "Username invalido"
@@ -45,27 +44,22 @@ exports.SignUp = (req, res) =>
     {
         res.render('signUp', { err: err });
     }
-
     else
     {
-        bcrypt.hash(req.body.password, 10, (err, hashpass) =>
+        new UserModel({
+            username: username,
+            alias: alias,
+            email: email,
+            password: password,
+            birthdate: birthdate
+        }).save().then(() =>
         {
-            new UserModel({
-                username: req.body.username,
-                alias: req.body.alias,
-                email: req.body.email,
-                password: hashpass,
-                birthdate: req.body.birthdate
-            }).save().then(() =>
-            {
-                req.flash('success_msg', "Usuario criado com sucesso");
-                res.redirect('/')
-            }).catch((err) =>
-            {
-
-                req.flash('error_msg', 'Falha ao criar usuario')
-                res.redirect('/signup')
-            });
-        })
-    }
-}
+            req.flash('success_msg', "Usuario criado com sucesso");
+            res.redirect('/')
+        }).catch((err) =>
+        {
+            req.flash('error_msg', 'Falha ao criar usuario')
+            res.redirect('/signup')
+        });
+    };
+};
