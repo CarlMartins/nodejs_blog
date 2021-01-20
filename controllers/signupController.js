@@ -39,6 +39,7 @@ exports.SignUp = (req, res) =>
             text: "Data de nascimento invalida"
         });
     }
+    let alias = req.body.alias;
 
     if (err.length > 0)
     {

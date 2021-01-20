@@ -1,6 +1,6 @@
-{{#if error}}
-<div class="alert alert-danger">{{error}}</div>
-{{/if}}
+{{#each err}}
+<div class="alert alert-danger">{{err}}</div>
+{{/each}}
 
 <div class="card">
     <div class="card-body">
@@ -13,7 +13,7 @@
             </div>
             <p>Password</p>
             <div class="input-group mb-3">
-                <input type="text" name="password" class="form-control" placeholder="Password"
+                <input type="password" name="password" class="form-control" placeholder="Password"
                     aria-label="Recipient's username" aria-describedby="basic-addon2">
             </div>
             <button type="submit" class="btn btn-primary">LogIn</button>
