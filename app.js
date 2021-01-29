@@ -4,33 +4,66 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const hbs = require('hbs');
-const bodyParser = require('body-parser');
-const flash = require('connect-flash');
-const session = require('express-session');
 const app = express();
 
-// view engine setup
+//===================================
+// VIEW ENGINE SETUP
+//===================================
+const hbs = require('hbs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.set('view options', { layout: '/layouts/layout' })
 hbs.registerPartials(__dirname + '/views/partials');
 
-// Body-parser
+//===================================
+// BODY-PARSER
+//===================================
+const bodyParser = require('body-parser');
 app.set(bodyParser.urlencoded({ extended: true }));
 app.set(bodyParser.json());
 
-// Session
+//===================================
+// SESSION
+//===================================
+const session = require('express-session');
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  maxAge: 24 * 60 * 60 * 1000
 }));
 
-// Flash
+// ==================================
+// PASSPORT
+//===================================
+const passport = require('passport');
+const User = require('./models/Users');
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(require('./middlewares/loginAuth'));
+
+passport.serializeUser((user, done) =>
+{
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) =>
+{
+  User.findById(id, function (err, user)
+  {
+    done(null, user);
+  });
+});
+
+//===================================
+// FLASH
+//===================================
+const flash = require('connect-flash');
 app.use(flash());
 const flashMiddleware = require('./middlewares/flash');
 app.use(flashMiddleware);
+
+//===================================
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,26 +71,34 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+//===================================
+// ROUTES
+//===================================
 const adminRouter = require('./routes/admin');
 app.use('/', adminRouter);
 
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-const signUpRouter = require('./routes/signup');
-app.use('/', signUpRouter);
+const userRouter = require('./routes/user');
+app.use('/', userRouter);
 
-// Db Connection
+//===================================
+// DB CONNECTION
+//===================================
 require('./helpers/DBConn')
 
-// catch 404 and forward to error handler
+//===================================
+// CATCH 404 AND FORWARD TO ERROR HANDLER 
+//===================================
 app.use(function (req, res, next)
 {
   next(createError(404));
 });
 
-// error handler
+//===================================
+// ERROR HANDLER
+//===================================
 app.use(function (err, req, res, next)
 {
   // set locals, only providing error in development
@@ -69,7 +110,9 @@ app.use(function (err, req, res, next)
   res.render('error');
 });
 
-// Server connection
+//===================================
+// SERVER CONNECTION
+//===================================
 const port = 3000;
 app.listen(port, () =>
 {

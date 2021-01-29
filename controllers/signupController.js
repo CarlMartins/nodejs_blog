@@ -12,7 +12,7 @@ exports.SignUp = (req, res) =>
     if (!username || typeof username === undefined || username === null)
     {
         err.push({
-            text: "Username invalido"
+            text: "Invalid username"
         });
     }
 
@@ -20,7 +20,7 @@ exports.SignUp = (req, res) =>
     if (!email || typeof email === undefined || email === null)
     {
         err.push({
-            text: "Email inválido"
+            text: "Invalid email"
         });
     }
 
@@ -28,7 +28,7 @@ exports.SignUp = (req, res) =>
     if (!password || typeof password === undefined || password === null)
     {
         err.push({
-            text: "Senha invalida"
+            text: "Invalid password"
         });
     }
 
@@ -36,7 +36,7 @@ exports.SignUp = (req, res) =>
     if (!birthdate || typeof birthdate === undefined || birthdate === null)
     {
         err.push({
-            text: "Data de nascimento invalida"
+            text: "Invalid birthdate"
         });
     }
     let alias = req.body.alias;
@@ -55,7 +55,7 @@ exports.SignUp = (req, res) =>
             birthdate: birthdate
         }).save().then(() =>
         {
-            req.flash('success_msg', "Usuario criado com sucesso");
+            req.flash('success_msg', 'Usuario criado com sucesso');
             res.redirect('/')
         }).catch((err) =>
         {
