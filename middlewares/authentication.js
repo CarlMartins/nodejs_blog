@@ -8,7 +8,7 @@ const midAuthentication = (req, res, next) =>
         } else
         {
             req.flash('err_msg', "Access denied");
-            res.redirect('/login');
+            res.redirect('/');
         }
     }
     else

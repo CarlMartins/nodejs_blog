@@ -1,4 +1,5 @@
 const User = require('../models/Users');
+const Post = require('../models/Posts');
 
 exports.Index = (req, res) =>
 {
@@ -30,5 +31,5 @@ exports.DeleteUser = (req, res) =>
 
 exports.CreatePost = (req, res) =>
 {
-
+    res.render('admin/createPost')
 }

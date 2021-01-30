@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/createpost/new" method="POST">
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Title</th>
+                    <th>Categorie</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Title" aria-label="Title"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    </td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <h4>Description</h4>
+            <div class="input-group">
+                <textarea class="form-control" aria-label="textearea" placeholder="Description"></textarea>
+            </div>
+            <br>
+
+            <button type="submit" class="btn btn-primary">Create Post</button>
+        </form>
+    </div>
+</div>
