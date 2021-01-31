@@ -1,4 +1,4 @@
-const UserModel = require('../models/Users');
+const User = require('../models/Users');
 
 exports.SignUpPage = (req, res) =>
 {
@@ -47,7 +47,7 @@ exports.SignUp = (req, res) =>
     }
     else
     {
-        new UserModel({
+        new User({
             username: username,
             alias: alias,
             email: email,

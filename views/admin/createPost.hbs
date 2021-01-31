@@ -1,25 +1,29 @@
 <div class="card">
     <div class="card-body">
         <form action="/admin/createpost/new" method="POST">
-
             <table class="table table-bordered">
                 <tr>
-                    <th>Title</th>
-                    <th>Categorie</th>
+                    <th>
+                        <h4>Title</h4>
+                    </th>
+                    <th>
+                        <h4>Categorie</h4>
+                    </th>
                 </tr>
                 <tr>
                     <td>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Title" aria-label="Title"
+                            <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Title"
                                 aria-describedby="basic-addon1">
                         </div>
                     </td>
                     <td>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option selected>Pick a category</option>
+                            {{#each category}}
+                            <option value="{{id}}">{{title}}</option>
+                            {{category.title}}
+                            {{/each}}
                         </select>
                     </td>
                 </tr>
@@ -27,7 +31,8 @@
 
             <h4>Description</h4>
             <div class="input-group">
-                <textarea class="form-control" aria-label="textearea" placeholder="Description"></textarea>
+                <textarea class="form-control" name="textarea" aria-label="textearea"
+                    placeholder="Description"></textarea>
             </div>
             <br>
 
