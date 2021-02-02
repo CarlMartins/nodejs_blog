@@ -1,4 +1,14 @@
+const Post = require('../models/Posts');
+
 exports.Index = (req, res) =>
 {
-    res.render('index');
+    Post.find({}).
+        populate('category').
+        exec((err, posts) =>
+        {
+            res.render('index', {
+                Post: posts
+            })
+        })
+
 }

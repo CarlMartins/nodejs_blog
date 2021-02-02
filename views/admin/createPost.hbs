@@ -18,11 +18,10 @@
                         </div>
                     </td>
                     <td>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="category" aria-label="Default select example">
                             <option selected>Pick a category</option>
                             {{#each category}}
                             <option value="{{id}}">{{title}}</option>
-                            {{category.title}}
                             {{/each}}
                         </select>
                     </td>

@@ -1,3 +1,15 @@
 {{#if sucess}}
 <div class="alert alert-danger">{{sucess}}</div>
 {{/if}}
+
+{{#each Post}}
+<div class="card">
+    <div class="card-body">
+        <p><strong>Title: </strong>{{title}}</p>
+        <p><strong>Category: </strong>{{category.title}}</p>
+        <p><strong>Text: </strong>{{text}}</p>
+    </div>
+</div>
+<br>
+
+{{/each}}

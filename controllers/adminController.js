@@ -1,6 +1,3 @@
-const User = require('../models/Users');
-const Post = require('../models/Posts');
-const Category = require('../models/Categories');
 const toUpper = require('../helpers/toUpper');
 
 
@@ -15,6 +12,8 @@ exports.Index = (req, res) =>
 //===================================
 // USERS
 //===================================
+const User = require('../models/Users');
+
 exports.ShowUsers = (req, res) =>
 {
     User.find({}, (err, users) =>
@@ -42,6 +41,8 @@ exports.DeleteUser = (req, res) =>
 //===================================
 // CATEGORIES
 //===================================
+const Category = require('../models/Categories');
+
 exports.CreateCategoryPage = (req, res) =>
 {
     res.render('admin/createCategory')
@@ -67,6 +68,7 @@ exports.CreateCategory = (req, res) =>
 //===================================
 // POSTS
 //===================================
+const Post = require('../models/Posts');
 exports.CreatePostPage = (req, res) =>
 {
     Category.find({}, (err, category) =>
@@ -81,8 +83,33 @@ exports.CreatePostPage = (req, res) =>
 exports.CreatePost = (req, res) =>
 {
     let title = req.body.title;
-    let categorie = req.body.categorie;
+    let category = req.body.category;
     let text = req.body.textarea;
 
-    Post.create
+    new Post({
+        title: title,
+        text: text,
+        category: category,
+    }).save().then(() =>
+    {
+        req.flash('success_msg', 'Post created');
+        res.redirect('/');
+    }).catch((err) =>
+    {
+        req.flash('err_msg', `Failed: ${err}`)
+    })
+
+
+    // new Post({
+    //     title: title,
+    //     category: category,
+    //     text: text
+    // }).save().then(() =>
+    // {
+    //     req.flash('success_msg', 'Post created');
+    //     res.redirect('/');
+    // }).catch((err) =>
+    // {
+    //     req.flash('err_msg', `Failed: ${err}`)
+    // })
 }

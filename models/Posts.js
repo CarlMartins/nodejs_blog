@@ -2,17 +2,19 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const PostSchema = new Schema({
-    title: {
+    title:
+    {
         type: String,
         required: true,
     },
-    categorie: [
-        {
-            type: Schema.Types.ObjectId, ref: 'categories',
-            required: true
-        }
-    ],
-    text: {
+    category:
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'categories',
+        required: true
+    },
+    text:
+    {
         type: String,
         required: true
     }

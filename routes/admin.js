@@ -9,5 +9,6 @@ router.post('/admin/users/delete/:id', isAuth, adminController.DeleteUser);
 router.get('/admin/createCategory', isAuth, adminController.CreateCategoryPage);
 router.post('/admin/createCategory/new', isAuth, adminController.CreateCategory);
 router.get('/admin/createPost', isAuth, adminController.CreatePostPage);
+router.post('/admin/createPost/new', isAuth, adminController.CreatePost);
 
 module.exports = router;
