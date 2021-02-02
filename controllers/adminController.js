@@ -98,18 +98,4 @@ exports.CreatePost = (req, res) =>
     {
         req.flash('err_msg', `Failed: ${err}`)
     })
-
-
-    // new Post({
-    //     title: title,
-    //     category: category,
-    //     text: text
-    // }).save().then(() =>
-    // {
-    //     req.flash('success_msg', 'Post created');
-    //     res.redirect('/');
-    // }).catch((err) =>
-    // {
-    //     req.flash('err_msg', `Failed: ${err}`)
-    // })
 }

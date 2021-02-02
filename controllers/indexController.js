@@ -10,5 +10,15 @@ exports.Index = (req, res) =>
                 Post: posts
             })
         })
+}
 
+exports.Post = (req, res) =>
+{
+    Post.findById(req.params.id, (err, post) =>
+    {
+        if (err) console.log(err);
+        res.render('post', {
+            Post: post
+        })
+    })
 }
