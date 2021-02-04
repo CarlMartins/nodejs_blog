@@ -1,17 +1,22 @@
-{{#each users}}
-<div class="card">
-    <div class="card-body">
-        <form action="/admin/users/delete/{{_id}}" method="POST">
-            <p><strong>ID: </strong>{{_id}}</p>
-            <p><strong>Username: </strong>{{username}}</p>
-            <p><strong>Alias: </strong>{{alias}}</p>
-            <p><strong>Email: </strong>{{email}}</p>
-            <p><strong>Birthdate: </strong>{{birthdate}}</p>
-            <p><strong>Role: </strong>{{role}}</p>
-            <p><strong>Create at: </strong>{{createdat}}</p>
-            <button type="submit" class="btn btn-danger">Deletar usuario</button>
-        </form>
+<div class="container-fluid">
+    <div class="row">
+        {{#each users}}
+        <div class="col-lg-4 col-md-6 col-sm-12 padding">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/admin/users/delete/{{_id}}" method="POST">
+                        <p><strong>ID: </strong>{{_id}}</p>
+                        <p><strong>Username: </strong>{{username}}</p>
+                        <p><strong>Alias: </strong>{{alias}}</p>
+                        <p><strong>Email: </strong>{{email}}</p>
+                        <p><strong>Birthdate: </strong>{{birthdate}}</p>
+                        <p><strong>Role: </strong>{{role}}</p>
+                        <p><strong>Create at: </strong>{{createdat}}</p>
+                        <button type="submit" class="btn btn-danger">Deletar usuario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/each}}
     </div>
 </div>
-<br>
-{{/each}}
