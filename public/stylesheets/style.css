@@ -10,12 +10,12 @@ a {
   color: #00B7FF;
 }
 
-.login {
+.login-container {
   width: 30%;
   margin-top: 15vh;
 }
 
-.login-input {
+.login-input, .register-input {
   width: 100%;
   background-color: none;
   margin-top: 35px;
@@ -25,28 +25,25 @@ a {
   border-bottom: 2px solid rgb(129, 129, 129);
 }
 
-.login-card {
-  height: 50vh;
-}
-
-.login h2 {
+.login-container h2, .register-container h2 {
   text-align: center;
   margin-bottom: 30px;
-  text-shadow: 0 0 5px #474747;
+  text-shadow: 0 0 3px #474747;
 }
 
-.form-control {
-  margin-top: 30px
-}
-
-.login .btn {
+.btn {
   width: 40%;
   display: table;
   margin: 40px auto;
 }
 
-.login .btn:hover {
+.login-container .btn:hover {
   box-shadow: 0 0 5px #0d42d4;
+}
+
+.register-container { 
+  width: 30%;
+  margin-top: 5vh;
 }
 
 .padding {
@@ -55,33 +52,43 @@ a {
 
 
 @media (max-width: 1050px) {
-  .login {
+  .login-container, .register-container {
     width: 50%;
     font-size: 1.1rem
   }
 
-  .login h2 {
+  .login-container h2 {
     font-size: 2rem;
   }
 }
 
 @media (max-width: 700px) {
-  .login {
+  .login-container, .register-container {
     width: 90%;
   }
 }
 
 @media (max-width: 540px) {
-  .login {
+  .login-container {
     width: 90%;
     font-size: .9rem;
   }
 
-  .login h2 {
+  .login-container h2, .register-container h2 {
     font-size: 2rem;
   }
 
-  .login .btn {
+  .btn {
     width: 80%;
+  }
+
+  .register-container {
+    width: 90%;
+    font-size: .9rem;
+    margin-top: 0;
+  }
+
+  .register-input {
+    margin-top: 25px;
   }
 }
