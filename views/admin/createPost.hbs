@@ -1,41 +1,31 @@
-<div class="card">
-    <div class="card-body">
-        <form action="/admin/createpost/new" method="POST">
-            <table class="table table-bordered">
-                <tr>
-                    <th>
-                        <h4>Title</h4>
-                    </th>
-                    <th>
-                        <h4>Categorie</h4>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="input-group mb-3">
-                            <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Title"
-                                aria-describedby="basic-addon1">
-                        </div>
-                    </td>
-                    <td>
-                        <select class="form-select" name="category" aria-label="Default select example">
-                            <option selected>Pick a category</option>
-                            {{#each category}}
-                            <option value="{{id}}">{{title}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
-                </tr>
-            </table>
+<div class="container create-post-container padding">
+    <form action="/admin/createpost/new" method="POST">
+        <h2>Create post</h2>
+        <div class="row padding">
+            <div class="col-lg-6 col-sm-12">
+                <h4>Title</h4>
 
-            <h4>Description</h4>
-            <div class="input-group">
-                <textarea class="form-control" name="textarea" aria-label="textearea"
-                    placeholder="Description"></textarea>
+                <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Title"
+                    aria-describedby="basic-addon1">
             </div>
-            <br>
 
-            <button type="submit" class="btn btn-primary">Create Post</button>
-        </form>
-    </div>
+            <div class="col-lg-6">
+                <h4>Category</h4>
+                <select class="form-select col-lg-6" name="category" aria-label="Default select example">
+                    <option selected>Pick a category</option>
+                    {{#each category}}
+                    <option value="{{id}}">{{title}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+
+        <div class="post-text-area">
+            <h4>Description</h4>
+            <textarea class="form-control" name="textarea" aria-label="textearea" placeholder="Description"></textarea>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Create Post</button>
+    </form>
 </div>
