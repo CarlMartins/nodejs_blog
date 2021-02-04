@@ -1,8 +1,87 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: #222;
+}
 a {
   color: #00B7FF;
+}
+
+.login {
+  width: 30%;
+  margin-top: 15vh;
+}
+
+.login-input {
+  width: 100%;
+  background-color: none;
+  margin-top: 35px;
+  padding-left: 30px;
+  height: 50px;
+  border-style: hidden;
+  border-bottom: 2px solid rgb(129, 129, 129);
+}
+
+.login-card {
+  height: 50vh;
+}
+
+.login h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 0 5px #474747;
+}
+
+.form-control {
+  margin-top: 30px
+}
+
+.login .btn {
+  width: 40%;
+  display: table;
+  margin: 40px auto;
+}
+
+.login .btn:hover {
+  box-shadow: 0 0 5px #0d42d4;
+}
+
+.padding {
+  padding-top: 20px;
+}
+
+
+@media (max-width: 1050px) {
+  .login {
+    width: 50%;
+    font-size: 1.1rem
+  }
+
+  .login h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .login {
+    width: 90%;
+  }
+}
+
+@media (max-width: 540px) {
+  .login {
+    width: 90%;
+    font-size: .9rem;
+  }
+
+  .login h2 {
+    font-size: 2rem;
+  }
+
+  .login .btn {
+    width: 80%;
+  }
 }
