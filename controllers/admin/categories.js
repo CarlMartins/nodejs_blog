@@ -9,6 +9,13 @@ exports.CreateCategoryPage = (req, res) =>
 exports.CreateCategory = (req, res) =>
 {
     let categoryName = req.body.categoryName;
+
+    if (!categoryName)
+    {
+        req.flash('err_msg', 'Empty field')
+        res.redirect('/admin/createcategory')
+    }
+
     categoryName = toUpper.toUpper(categoryName);
 
     new Category({

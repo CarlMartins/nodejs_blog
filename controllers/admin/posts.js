@@ -1,5 +1,6 @@
 const Post = require('../../models/Posts');
 const Category = require('../../models/Categories');
+const validate = require('../../helpers/validations/postValidation')
 
 exports.CreatePostPage = (req, res) =>
 {
@@ -17,17 +18,26 @@ exports.CreatePost = (req, res) =>
     let title = req.body.title;
     let category = req.body.category;
     let text = req.body.textarea;
+    let err = validate.postValidation(title, category, text);
 
-    new Post({
-        title: title,
-        text: text,
-        category: category,
-    }).save().then(() =>
+    if (err != null)
     {
-        req.flash('success_msg', 'Post created');
-        res.redirect('/');
-    }).catch((err) =>
+        for (let i = 0; i < err.length; i++)
+        {
+            req.flash('err_msg', ` ${err[i]}`);
+        }
+        res.redirect('/admin/createpost');
+    } else
     {
-        req.flash('err_msg', `Failed: ${err}`)
-    })
+        new Post({
+            title: title,
+            text: text,
+            category: category,
+        }).save().then(() =>
+        {
+            req.flash('success_msg', 'Post created');
+            res.redirect('/');
+        })
+    }
 }
+
