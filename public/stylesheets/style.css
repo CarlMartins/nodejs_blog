@@ -102,6 +102,18 @@ textarea {
   padding: 25px;
 }
 
+.brief {
+  height: 25px;
+}
+
+.description {
+  height: 150px
+}
+
+.views {
+  margin-left: 85%;
+}
+
 @media (max-width: 1050px) {
   .login-container, .register-container {
     width: 50%;

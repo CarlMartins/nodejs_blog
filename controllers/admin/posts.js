@@ -17,8 +17,9 @@ exports.CreatePost = (req, res) =>
 {
     let title = req.body.title;
     let category = req.body.category;
+    let briefText = req.body.brieftext;
     let text = req.body.textarea;
-    let err = validate.postValidation(title, category, text);
+    let err = validate.postValidation(title, category, briefText, text);
 
     if (err != null)
     {
@@ -31,6 +32,7 @@ exports.CreatePost = (req, res) =>
     {
         new Post({
             title: title,
+            brief_text: briefText,
             text: text,
             category: category,
         }).save().then(() =>

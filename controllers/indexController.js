@@ -14,9 +14,16 @@ exports.Index = (req, res) =>
 
 exports.Post = (req, res) =>
 {
-    Post.findById(req.params.id, (err, post) =>
+    let id = req.params.id;
+    Post.findById(id, (err, post) =>
     {
         if (err) console.log(err);
+        let views = post.views;
+        Post.updateOne({ _id: id },
+            { views: views + 1 }, (err, doc) =>
+        {
+            if (err) return err;
+        })
         res.render('post', {
             Post: post
         })

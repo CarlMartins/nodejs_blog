@@ -1,6 +1,6 @@
 module.exports = {
     postValidation:
-        function valitadeCreatePost(title, category, text)
+        function valitadeCreatePost(title, category, brieftext, text)
         {
             const err = [];
 
@@ -12,6 +12,11 @@ module.exports = {
             if (category == 'Pick a category')
             {
                 err.push('Invalid category');
+            }
+
+            if (!brieftext || brieftext == null || typeof brieftext == 'undefined')
+            {
+                err.push('Invalid Brieftext');
             }
 
             if (!text || text == null || typeof text == 'undefined')

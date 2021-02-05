@@ -4,9 +4,8 @@
         <div class="row padding">
             <div class="col-lg-6 col-sm-12">
                 <h4>Title</h4>
-
-                <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Title"
-                    aria-describedby="basic-addon1">
+                <input type="text" name="title" class="form-control" placeholder="Title - Max 25 characters"
+                    aria-label="Title" aria-describedby="basic-addon1" maxlength="25">
             </div>
 
             <div class="col-lg-6">
@@ -21,8 +20,17 @@
         </div>
 
         <div class="post-text-area">
-            <h4>Description</h4>
-            <textarea class="form-control" name="textarea" aria-label="textearea" placeholder="Description"></textarea>
+            <h4>
+                Brief description</h4>
+            <textarea class="form-control brief" name="brieftext" aria-label="textearea"
+                placeholder="Brief description - Max 50 characters" maxlength="50"></textarea>
+        </div>
+
+        <div class="post-text-area">
+            <h4>
+                Description</h4>
+            <textarea class="form-control description" name="textarea" aria-label="textearea"
+                placeholder="Description"></textarea>
         </div>
         <br>
 

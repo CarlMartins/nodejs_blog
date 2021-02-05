@@ -13,10 +13,19 @@ const PostSchema = new Schema({
         ref: 'categories',
         required: true
     },
-    text:
+    brief_text:
     {
         type: String,
         required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    views: {
+        type: Number,
+        required: true,
+        default: 0
     }
 })
 
