@@ -2,15 +2,21 @@
 <div class="alert alert-danger">{{sucess}}</div>
 {{/if}}
 
-{{#each Post}}
-<div class="card">
-    <div class="card-body">
-        <p>
-        <h2><a href="/posts/{{_id}}">{{title}}</a></h2>
-        </p>
-        <p><strong>Category: </strong>{{category.title}}</p>
-        <p><strong>Text: </strong>{{text}}</p>
+<div class="container home-container padding">
+    <div class="row">
+        {{#each Post}}
+        <div class="col-lg-6">
+            <div class="card card-shadow">
+                <div class="card-body">
+                    <p>
+                    <h2><a href="/posts/{{_id}}">{{title}}</a></h2>
+                    </p>
+                    <p><strong>Category: </strong>{{category.title}}</p>
+                    <p><strong>Text: </strong>{{text}}</p>
+                </div>
+            </div>
+            <br>
+        </div>
+        {{/each}}
     </div>
 </div>
-<br>
-{{/each}}

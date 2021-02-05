@@ -6,9 +6,6 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   color: #222;
 }
-a {
-  color: #00B7FF;
-}
 
 .login-container {
   width: 30%;
@@ -83,6 +80,28 @@ textarea {
   height: 50px;
 }
 
+.home-container, .post-container {
+  width: 80%;
+}
+
+.card-shadow {
+  box-shadow: 1px 1px 5px rgb(189, 189, 189);
+  text-overflow: ellipsis;
+}
+
+.home-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.post-container p {
+  font-size: 1.3rem;
+}
+
+.post-container .card {
+  padding: 25px;
+}
+
 @media (max-width: 1050px) {
   .login-container, .register-container {
     width: 50%;
@@ -136,4 +155,9 @@ textarea {
   .create-post-container .btn {
     margin-top: 0;
   }
+
+  .post-container {
+    width: 100%;
+  }
+
 }
