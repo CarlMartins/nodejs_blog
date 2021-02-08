@@ -5,14 +5,16 @@ exports.LoginScreen = (req, res) =>
 
 exports.LoginTest = (req, res) =>
 {
-    console.log(req.user.id);
-    if (req.user.id == process.env.ADMIN_ID)
+    let userId = req.user.id;
+    let username = req.user.username;
+
+    if (userId == process.env.ADMIN_ID)
     {
         req.flash('success_msg', " welcome admin!");
         res.redirect('/admin');
     } else
     {
-        req.flash('success_msg', ` welcome ${req.user.username}!`);
+        req.flash('success_msg', ` welcome ${username}!`);
         res.redirect('/');
     }
 }
