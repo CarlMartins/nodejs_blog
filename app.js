@@ -64,7 +64,6 @@ const flashMiddleware = require('./middlewares/flash');
 app.use(flashMiddleware);
 
 //===================================
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

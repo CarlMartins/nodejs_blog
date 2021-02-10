@@ -15,19 +15,14 @@ exports.CreatePostPage = (req, res) =>
 
 exports.CreatePost = (req, res) =>
 {
-    let title = req.body.title;
-    let category = req.body.category;
-    let briefText = req.body.brieftext;
-    let text = req.body.textarea;
-    let err = validate.postValidation(title, category, briefText, text);
+    let { title, category, briefText, text } = req.body;
+    let err = validate(title, category, briefText, text);
 
-    if (err != null)
+    if (err)
     {
-        for (let i = 0; i < err.length; i++)
-        {
-            req.flash('err_msg', ` ${err[i]}`);
-        }
-        res.redirect('/admin/createpost');
+        res.render('admin/createpost', {
+            err: err
+        })
     } else
     {
         new Post({

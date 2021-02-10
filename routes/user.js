@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const signUpController = require('../controllers/signupController');
 const loginController = require('../controllers/loginController');
-const loginValidation = require('../middlewares/loginValidation');
+const loginValidation = require('../helpers/validations/loginValidation');
 const passport = require('passport');
 
 router.get('/signup', signUpController.SignUpPage);

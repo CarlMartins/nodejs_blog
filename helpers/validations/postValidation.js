@@ -1,35 +1,40 @@
-module.exports = {
-    postValidation:
-        function valitadeCreatePost(title, category, brieftext, text)
-        {
-            const err = [];
+function valitadeCreatePost(title, category, brieftext, text)
+{
+    const err = [];
 
-            if (!title || title == null || typeof title == 'undefined')
-            {
-                err.push('Invalid title');
-            }
+    if (!title || title == null || typeof title == 'undefined')
+    {
+        err.push({
+            text: 'Invalid title'
+        });
+    }
 
-            if (category == 'Pick a category')
-            {
-                err.push('Invalid category');
-            }
+    if (category == 'Pick a category')
+    {
+        err.push({
+            text: 'Invalid category'
+        });
+    }
 
-            if (!brieftext || brieftext == null || typeof brieftext == 'undefined')
-            {
-                err.push('Invalid Brieftext');
-            }
+    if (!brieftext || brieftext == null || typeof brieftext == 'undefined')
+    {
+        err.push({
+            text: 'Invalid brieftext'
+        });
+    }
 
-            if (!text || text == null || typeof text == 'undefined')
-            {
-                err.push('Invalid text');
-            }
+    if (!text || text == null || typeof text == 'undefined')
+    {
+        err.push({
+            text: 'Invalid text'
+        });
+    }
 
-            if (err.length > 0)
-            {
-                return err;
-            } else
-            {
-                return null;
-            }
-        }
+    if (err.length > 0)
+    {
+        return err;
+    }
 }
+
+
+module.exports = valitadeCreatePost;

@@ -1,5 +1,6 @@
 const Category = require('../../models/Categories');
 const toUpper = require('../../helpers/toUpper');
+const categoryValidation = require('../../helpers/validations/categoryValidation')
 
 exports.CreateCategoryPage = (req, res) =>
 {
@@ -9,8 +10,9 @@ exports.CreateCategoryPage = (req, res) =>
 exports.CreateCategory = (req, res) =>
 {
     let categoryName = req.body.categoryName;
+    let err = categoryValidation(categoryName)
 
-    if (!categoryName)
+    if (err)
     {
         req.flash('err_msg', 'Empty field')
         res.redirect('/admin/createcategory')

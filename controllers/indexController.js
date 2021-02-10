@@ -17,10 +17,11 @@ exports.Post = (req, res) =>
     let id = req.params.id;
     Post.findById(id, (err, post) =>
     {
-        if (err) console.log(err);
+        if (err) return err;
+
         let views = post.views;
         Post.updateOne({ _id: id },
-            { views: views + 1 }, (err, doc) =>
+            { views: views + 1 }, (err) =>
         {
             if (err) return err;
         })

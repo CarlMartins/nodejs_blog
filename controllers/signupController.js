@@ -1,4 +1,5 @@
 const User = require('../models/Users');
+const signUpValidation = require('../helpers/validations/signUpValidation')
 
 exports.SignUpPage = (req, res) =>
 {
@@ -7,45 +8,15 @@ exports.SignUpPage = (req, res) =>
 
 exports.SignUp = (req, res) =>
 {
-    var err = [];
-    let username = req.body.username;
-    if (!username || typeof username === undefined || username === null)
-    {
-        err.push({
-            text: "Invalid username"
-        });
-    }
+    let { username, email, password, birthdate, alias } = req.body;
+    let err = signUpValidation(username, email, password, birthdate);
 
-    let email = req.body.email;
-    if (!email || typeof email === undefined || email === null)
+    if (err)
     {
-        err.push({
-            text: "Invalid email"
-        });
-    }
-
-    let password = req.body.password;
-    if (!password || typeof password === undefined || password === null)
-    {
-        err.push({
-            text: "Invalid password"
-        });
-    }
-
-    let birthdate = req.body.birthdate;
-    if (!birthdate || typeof birthdate === undefined || birthdate === null)
-    {
-        err.push({
-            text: "Invalid birthdate"
-        });
-    }
-    let alias = req.body.alias;
-
-    if (err.length > 0)
-    {
-        res.render('signUp', { err: err });
-    }
-    else
+        res.render('signup', {
+            err: err
+        })
+    } else
     {
         new User({
             username: username,
@@ -57,10 +28,6 @@ exports.SignUp = (req, res) =>
         {
             req.flash('success_msg', 'Usuario criado com sucesso');
             res.redirect('/')
-        }).catch((err) =>
-        {
-            req.flash('error_msg', 'Falha ao criar usuario')
-            res.redirect('/signup')
-        });
-    };
+        })
+    }
 };

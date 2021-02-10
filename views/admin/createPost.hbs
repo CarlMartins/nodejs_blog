@@ -1,3 +1,7 @@
+{{#each err}}
+<div class="alert alert-danger">{{text}}</div>
+{{/each}}
+
 <div class="container create-post-container padding">
     <form action="/admin/createpost/new" method="POST">
         <h2>Create post</h2>
