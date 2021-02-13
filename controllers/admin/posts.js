@@ -20,9 +20,10 @@ exports.CreatePost = (req, res) =>
 
     if (err)
     {
-        res.render('admin/createpost', {
-            err: err
-        })
+        err.forEach(element => {
+            req.flash('err_msg', ` ${element.text}`);
+        });
+        res.redirect('/admin/createpost');
     } else
     {
         new Post({
