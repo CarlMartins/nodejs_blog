@@ -27,7 +27,7 @@ app.set(bodyParser.json());
 //===================================
 const session = require('express-session');
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'ef2f464b956dc4d503f0fe5115d68003cd6093506e443af2e169fe165d5',
   resave: true,
   saveUninitialized: true,
   maxAge: 24 * 60 * 60 * 1000
@@ -112,7 +112,7 @@ app.use(function (err, req, res, next)
 //===================================
 // SERVER CONNECTION
 //===================================
-const port = 3000;
+const port = process.env.PORT || 3333;
 app.listen(port, () =>
 {
   console.log(`Connection successfull to http://localhost:${port}`);
