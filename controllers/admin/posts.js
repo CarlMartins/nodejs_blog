@@ -15,8 +15,8 @@ exports.CreatePostPage = (req, res) =>
 
 exports.CreatePost = (req, res) =>
 {
-    let { title, category, briefText, text } = req.body;
-    let err = validate(title, category, briefText, text);
+    let { title, category, brieftext, textarea } = req.body;
+    let err = validate(title, category, brieftext, textarea);
 
     if (err)
     {
@@ -27,8 +27,8 @@ exports.CreatePost = (req, res) =>
     {
         new Post({
             title: title,
-            brief_text: briefText,
-            text: text,
+            brief_text: brieftext,
+            text: textarea,
             category: category,
         }).save().then(() =>
         {
