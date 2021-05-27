@@ -2,6 +2,7 @@ require('dotenv').config({ path: __dirname + '/.env' })
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const rootPath = require('./helpers/rootPath');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
@@ -12,7 +13,7 @@ const app = express();
 const hbs = require('hbs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.set('view options', { layout: '/layouts/layout' })
+app.set('view options', { layout: '/layouts/layout', path: rootPath })
 hbs.registerPartials(__dirname + '/views/partials');
 
 //===================================
