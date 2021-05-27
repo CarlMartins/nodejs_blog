@@ -14,7 +14,9 @@ router.post('/admin/createCategory/new', isAuth, adminCategories.CreateCategory)
 router.get('/admin/createPost', isAuth, adminPosts.CreatePostPage);
 router.post('/admin/createPost/new', isAuth, adminPosts.CreatePost);
 router.get('/admin/managePosts', isAuth, adminPosts.managePosts);
-router.get('/admin/posts/edit/:id', isAuth, adminPosts.editPost);
+router.get('/admin/posts/settings/:id', isAuth, adminPosts.settingsPost);
 router.post('/admin/posts/delete/:id', isAuth, adminPosts.deletePost);
+router.get('/admin/posts/edit/:id', isAuth, adminPosts.editPostPage);
+router.post('/admin/posts/edit/:id', isAuth, adminPosts.editPost);
 
 module.exports = router;

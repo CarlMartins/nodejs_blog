@@ -1,0 +1,16 @@
+<head>
+    <title>{{Post.title}}</title>
+</head>
+<div class="container post-container padding">
+    <form action="/admin/posts/delete/{{Post._id}}" method="post">
+        <div class="card card-shadow">
+            <div class="card-body">
+                <h1 class="display-5">{{Post.title}}</h1>
+                <br><br><br>
+                <p>{{Post.text}}</p>
+            </div>
+        </div>
+        <button class="btn btn-danger" type="submit">Delete post</button>
+        <a href="/admin/posts/edit/{{Post._id}}"><button class="btn btn-info" type="button">Edit post</button></a>
+    </form>
+</div>

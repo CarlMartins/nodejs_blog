@@ -1,17 +1,45 @@
-<head>
-    <title>{{Post.title}}</title>
-</head>
-<div class="container post-container padding">
-    <form action="/admin/posts/delete/{{Post._id}}" method="post">
-        <div class="card card-shadow">
-            <div class="card-body">
-                <h1 class="display-5">{{Post.title}}</h1>
-                <br><br><br>
-                <p>{{Post.text}}</p>
+{{#each err}}
+<div class="alert alert-danger">{{text}}</div>
+{{/each}}
+
+
+
+<div class="container create-post-container padding">
+    <form action="/admin/posts/edit/{{Post._id}}" method="POST">
+        <h2>Create post</h2>
+        <div class="row padding">
+            <div class="col-lg-6 col-sm-12">
+                <h4>Title</h4>
+                <input type="text" name="title" class="form-control" placeholder="Title - Max 25 characters"
+                    aria-label="Title" aria-describedby="basic-addon1" maxlength="25">
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Category</h4>
+                <select class="form-select col-lg-6" name="category" aria-label="Default select example">
+                    <option selected>Pick a category</option>
+                    {{#each Category}}
+                    <option value="{{_id}}">{{title}}</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
-        <button class="btn btn-danger" type="submit">Delete post</button>
-        <button class="btn btn-info" type="submit">Edit post</button>
 
+        <div class="post-text-area">
+            <h4>
+                Brief description</h4>
+            <textarea class="form-control brief" name="brieftext" aria-label="textearea"
+                placeholder="Brief description - Max 50 characters" maxlength="50"></textarea>
+        </div>
+
+        <div class="post-text-area">
+            <h4>
+                Description</h4>
+            <textarea class="form-control description" name="textarea" aria-label="textearea"
+                placeholder="Description"></textarea>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
 </div>

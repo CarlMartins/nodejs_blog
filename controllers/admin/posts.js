@@ -52,16 +52,50 @@ exports.managePosts = (req, res) =>
         })
 }
 
-exports.editPost = (req, res) =>
+exports.settingsPost = (req, res) =>
 {
     let id = req.params.id;
     Post.findById(id, (err, post) =>
     {
         if (err) return err;
-        res.render('admin/editPost', {
+        res.render('admin/settingsPost', {
             Post: post
         })
     })
+}
+
+exports.editPostPage = (req, res) =>
+{
+    let allCategories = {};
+    Category.find((err, categories) =>
+    {
+        if (err) console.log(err);
+        allCategories = categories;
+    });
+
+    Post.findById(req.params.id, (err, posts) =>
+    {
+        res.render('admin/editPost', {
+            Post: posts,
+            Category: allCategories
+        });
+    })
+};
+
+exports.editPost = (req, res) =>
+{
+    const id = req.params.id;
+    Post.findByIdAndUpdate({ _id: id }, {
+        title: req.body.title,
+        category: req.body.category,
+        brief_text: req.body.brieftext,
+        text: req.body.textarea,
+    }, (err) =>
+    {
+        if (err) console.log(err);
+        res.redirect('/admin');
+    });
+
 }
 
 exports.deletePost = (req, res) =>

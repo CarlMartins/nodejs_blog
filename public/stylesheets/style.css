@@ -34,6 +34,10 @@ h2 {
   margin: 40px auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 .btn:hover {
   box-shadow: 0 0 5px #0d42d4;
 }
